@@ -18,16 +18,28 @@ function addTask(){
         li.appendChild(span)
 
         textBox.value = ''
+        saveData()
     }
 }
 
 listContainer.addEventListener("click", function(a){
     if(a.target.tagName == "LI"){
         a.target.classList.toggle("done")
+        saveData()
     }
 
     else if(a.target.tagName == "SPAN"){
         a.target.parentElement.remove()
+        saveData()
     }
 
 })
+
+function saveData(){
+    localStorage.setItem("data" , listContainer.innerHTML)
+}
+
+function showData(){
+    listContainer.innerHTML = localStorage.getItem("data")
+}
+showData()
